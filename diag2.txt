@@ -1,0 +1,38 @@
+=== WINHTTP PROXY === 
+
+Current WinHTTP proxy settings:
+
+    Direct access (no proxy server).
+
+ 
+=== USER PROXY SETTINGS === 
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings
+    ProxyEnable    REG_DWORD    0x0
+
+
+
+ERROR: The system was unable to find the specified registry key or value.
+
+
+ERROR: The system was unable to find the specified registry key or value.
+ 
+=== HOSTS FILE === 
+﻿# Copyright (c) 1993-2009 Microsoft Corp.
+
+192.168.2.115 host.docker.internal
+192.168.2.115 gateway.docker.internal
+127.0.0.1 kubernetes.docker.internal
+ 
+=== CHROME POLICIES === 
+ERROR: The system was unable to find the specified registry key or value.
+ 
+=== ANTIVIRUS PRODUCTS === 
+
+
+AMRunningMode             : Normal
+RealTimeProtectionEnabled : True
+
+
+
+Invalid GET Expression.
