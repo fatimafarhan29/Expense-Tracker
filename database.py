@@ -2,8 +2,7 @@
 
 Every function opens a short-lived connection, does one job, and closes it.
 All queries are parameterized (values passed as tuples, never string-built)
-per the rules in agent.md. Requires NEON_DATABASE_URL in the local .env file
-(see .env.example).
+per the rules in agent.md. Requires NEON_DATABASE_URL in the local .env file.
 """
 
 import os
@@ -34,19 +33,30 @@ BUDGETS_DDL = """
 
 
 def get_connection():
-    """Open a new connection to Neon using NEON_DATABASE_URL from .env.
+    """Open a new connection to Neon.
+
+    Reads NEON_DATABASE_URL from the environment (.env file, local runs)
+    or from Streamlit secrets (deployed apps, e.g. Streamlit Community Cloud).
 
     Returns:
         psycopg2 connection object.
 
     Raises:
-        RuntimeError: if NEON_DATABASE_URL is missing from the environment.
+        RuntimeError: if no connection string is configured in either place.
     """
     db_url = os.getenv("NEON_DATABASE_URL")
     if not db_url:
+        # Deployed on Streamlit Community Cloud: the value lives in secrets.
+        try:
+            import streamlit as st
+
+            db_url = st.secrets.get("NEON_DATABASE_URL")
+        except Exception:
+            db_url = None
+    if not db_url:
         raise RuntimeError(
-            "NEON_DATABASE_URL is not set. Copy .env.example to .env and add "
-            "your real Neon connection string."
+            "NEON_DATABASE_URL is not set. Locally: add it to a .env file. "
+            "On Streamlit Cloud: add it under Settings -> Secrets."
         )
     return psycopg2.connect(db_url)
 
