@@ -1,0 +1,6 @@
+  TCP    0.0.0.0:8501           0.0.0.0:0              LISTENING       10860
+  TCP    [::]:8501              [::]:0                 LISTENING       10860
+  TCP    [::1]:8501             [::1]:51119            ESTABLISHED     10860
+  TCP    [::1]:8501             [::1]:51465            ESTABLISHED     10860
+  TCP    [::1]:51119            [::1]:8501             ESTABLISHED     25004
+  TCP    [::1]:51465            [::1]:8501             ESTABLISHED     14120
